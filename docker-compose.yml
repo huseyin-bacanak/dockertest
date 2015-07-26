@@ -1,2 +1,11 @@
 web:
   build: .
+  volumes:
+     - build/libs/:/code
+  ports:
+      - "9000:9000"
+  command: java -jar dockertest-standalone.jar
+db:
+  image: wnameless/oracle-xe-11g
+  ports:
+      - "1521:1521"
