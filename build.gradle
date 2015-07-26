@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+        classpath 'com.github.rholder:gradle-one-jar:1.0.4'
     }
 }
 
@@ -11,14 +12,17 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'gradle-one-jar'
 
 jar {
-    baseName = 'gs-actuator-service'
+    baseName = 'app'
     version =  '0.1.0'
+    mainClassName="demo.App"
 }
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
 
 repositories {
     mavenCentral()
@@ -33,4 +37,8 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.5'
+}
+
+task fatJar(type: OneJar) {
+    mainClass = 'demo.App'
 }
